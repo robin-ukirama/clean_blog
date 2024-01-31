@@ -19,6 +19,16 @@
     <%= form.label :email, "Email", class: "form-label", for: "email" %>
     <div class="invalid-feedback" data-sb-feedback="email:required">A valid email address is required.</div>
   </div>
+  <div class="form-floating">
+    <%= form.password_field :password, class: "form-control", id: "password", "data-sb-validations" => "required" %>
+    <%= form.label :password, "Password", class: "form-label", for: "password" %>
+    <div class="invalid-feedback" data-sb-feedback="password:required">Password is required.</div>
+  </div>
+  <div class="form-floating">
+    <%= form.password_field :password_confirmation, class: "form-control", id: "password_confirmation", "data-sb-validations" => "required" %>
+    <%= form.label :password_confirmation, "Confirm Password", class: "form-label", for: "password_confirmation" %>
+    <div class="invalid-feedback" data-sb-feedback="password_confirmation:required">Password confirmation is required.</div>
+  </div>
   <br>
   <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Send</button>
 
