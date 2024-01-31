@@ -1,3 +1,5 @@
+require 'net/http'
+
 module ApplicationHelper
 
     # Returns the full title on a per-page basis.
@@ -28,10 +30,23 @@ module ApplicationHelper
       end
     end
 
+    def image_exists?(url)
+    uri = URI(url)
+    response = nil
+    begin
+      response = Net::HTTP.get_response(uri)
+    rescue StandardError
+      return false  # Return false if an exception occurs
+    end
+    response.is_a?(Net::HTTPSuccess)
+  end
+
     # Returns the background image for a page.
     def full_bg_image(page_bg_image = '')
       if !page_bg_image.empty? && Rails.application.assets.find_asset(page_bg_image)
         '/assets/' + page_bg_image
+      elsif !page_bg_image.empty? && image_exists?(page_bg_image)
+        page_bg_image
       elsif !page_bg_image.empty?
         '/assets/default-post-bg.jpg' 
       else
