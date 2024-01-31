@@ -1,0 +1,25 @@
+<%= form_with(model: user) do |form| %>
+  <% if user.errors.any? %>
+    <div id="error_explanation_new">
+      <h6><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h6>
+      <ul>
+        <% user.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-floating">
+    <%= form.text_field :name, class: "form-control", id: "name", "data-sb-validations" => "required" %>
+    <%= form.label :name, "Name", class: "form-label", for: "name" %>
+    <div class="invalid-feedback" data-sb-feedback="name:required">A name is required.</div>
+  </div>
+  <div class="form-floating">
+    <%= form.text_field :email, class: "form-control", id: "email", "data-sb-validations" => "required,email" %>
+    <%= form.label :email, "Email", class: "form-label", for: "email" %>
+    <div class="invalid-feedback" data-sb-feedback="email:required">A valid email address is required.</div>
+  </div>
+  <br>
+  <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Send</button>
+
+<% end %>

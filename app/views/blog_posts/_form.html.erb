@@ -1,0 +1,39 @@
+<%= form_with(model: blog_post) do |form| %>
+  <% if blog_post.errors.any? %>
+    <div id="error_explanation_new">
+      <h6><%= pluralize(blog_post.errors.count, "error") %> prohibited this blog_post from being saved:</h6>
+      <ul>
+        <% blog_post.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form-floating">
+  <%= form.text_field :title, class: "form-control", id: "title", placeholder: "Enter title...", "data-sb-validations" => "required" %>
+  <%= form.label :title, "Title", class: "form-label", for: "title" %>
+  <div class="invalid-feedback" data-sb-feedback="title:required">A title is required.</div>
+</div>
+<div class="form-floating">
+  <%= form.text_field :summary, class: "form-control", id: "summary", placeholder: "Enter summary...", "data-sb-validations" => "required" %>
+  <%= form.label :summary, "Summary", class: "form-label", for: "summary" %>
+  <div class="invalid-feedback" data-sb-feedback="summary:required">A summary is required.</div>
+</div>
+<div class="form-floating">
+  <%= form.text_area :content, class: "form-control", id: "content", placeholder: "Enter content...", "data-sb-validations" => "required" %>
+  <%= form.label :content, "Content", class: "form-label", for: "content" %>
+  <div class="invalid-feedback" data-sb-feedback="content:required">Content is required.</div>
+</div>
+<div class="form-floating">
+  <%= form.collection_select :user_id, User.all, :id, :name, {}, { class: "form-control", id: "user_id", "data-sb-validations" => "required" } %>
+  <%= form.label :user_id, "User", class: "form-label", for: "user_id" %>
+  <div class="invalid-feedback" data-sb-feedback="user_id:required">User is required.</div>
+</div>
+<div class="form-floating">
+  <%= form.text_field :title_image_url, class: "form-control", id: "title_image_url", placeholder: "Enter title image URL...", "data-sb-validations" => "required" %>
+  <%= form.label :title_image_url, "Title Image URL", class: "form-label", for: "title_image_url" %>
+  <div class="invalid-feedback" data-sb-feedback="title_image_url:required">Title Image URL is required.</div>
+</div>
+<br>
+<button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Send</button>
+<% end %>

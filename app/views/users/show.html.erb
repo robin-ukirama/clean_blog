@@ -1,0 +1,29 @@
+<% provide(:title, 'User Detail') %>
+<% provide(:heading, 'User Detail') %>
+<% provide(:sub_heading, 'You can see user\'s information details here') %>
+<% provide(:bg_image, 'users-bg.jpg') %>
+
+<!-- Main Content--> 
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+              
+              <ul class="list-group list-group-horizontal-xxl">
+                <li class="list-group-item" style="width:30%"><strong>Name</strong></li>
+                <li class="list-group-item" style="width:70%"><%= @user.name %></li>
+              </ul>
+              <ul class="list-group list-group-horizontal-xxl">
+                <li class="list-group-item" style="width:30%"><strong>Email</strong></li>
+                <li class="list-group-item" style="width:70%"><%= @user.email %></li>
+              </ul>
+              <br>
+              <%= link_to 'Edit', edit_user_path(@user) %> |
+              <%= link_to 'Back', users_path %>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
