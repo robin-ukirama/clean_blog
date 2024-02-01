@@ -6,8 +6,13 @@ class BlogPostsController < ApplicationController
 
   # GET /blog_posts or /blog_posts.json
   def index
-    @blog_posts = BlogPost.order(created_at: :desc)
-  end
+    if params[:search].present?
+      search_term = "%#{params[:search].downcase}%"
+      @blog_posts = BlogPost.where("LOWER(title) LIKE ? OR LOWER(summary) LIKE ?", search_term, search_term).order(created_at: :desc)
+    else
+      @blog_posts = BlogPost.order(created_at: :desc)
+    end
+  end  
 
   def blogpost_user_index
     @blog_posts = current_user.blog_posts.order(created_at: :desc)
@@ -77,7 +82,7 @@ class BlogPostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def blog_post_params
-      params.require(:blog_post).permit(:title, :summary, :content, :user_id, :title_image_url)
+      params.require(:blog_post).permit(:title, :summary, :content, :user_id, :title_image_url, :search)
     end
 
     # Confirms a logged-in user.

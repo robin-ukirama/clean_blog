@@ -8,6 +8,12 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
+                <%= form_tag(blog_posts_path, method: :get, class: "mb-4") do %>
+                    <div class="input-group">
+                        <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search for blog posts" %>
+                        <button type="submit" class="btn btn-outline-secondary">Search</button>
+                    </div>
+                <% end %>
                 <% if logged_in? && current_user.is_admin%>
                     <button class ="btn btn-light"><%= link_to 'New Blog Post', new_blog_post_path %></button>
                 <% end %>
@@ -17,9 +23,9 @@
                         <%= link_to blog_post do %>
                             <h2 class="post-title"><%= blog_post.title %></h2>
                             <h3 class="post-subtitle"><%= blog_post.summary %></h3>
-                            <% if logged_in? && current_user.is_admin%>
+                            <% if logged_in? && current_user.is_admin %>
                                 <%= link_to 'Edit', edit_blog_post_path(blog_post) %> 
-                                <%= link_to 'Delete', blog_post, method: :delete, data: { confirm: 'Are you sure?' }  %>
+                                <%= link_to 'Delete', blog_post, method: :delete, data: { confirm: 'Are you sure?' } %>
                             <% end %>
                         <% end %>
                     </div>
