@@ -1,9 +1,16 @@
 class BlogPostsController < ApplicationController
+  include SessionsHelper
   before_action :set_blog_post, only: %i[ show edit update destroy ]
+  before_action :logged_in_user, only: [:new, :edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /blog_posts or /blog_posts.json
   def index
     @blog_posts = BlogPost.order(created_at: :desc)
+  end
+
+  def blogpost_user_index
+    @blog_posts = current_user.blog_posts.order(created_at: :desc)
   end
 
   # GET /blog_posts/1 or /blog_posts/1.json
@@ -17,6 +24,11 @@ class BlogPostsController < ApplicationController
 
   # GET /blog_posts/1/edit
   def edit
+    @user = User.find(current_user.id)
+    @blogpost = BlogPost.find(params[:id])
+    if @user.id != @blogpost.user_id
+      redirect_to(root_url) 
+    end
   end
 
   # POST /blog_posts or /blog_posts.json
@@ -66,5 +78,19 @@ class BlogPostsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def blog_post_params
       params.require(:blog_post).permit(:title, :summary, :content, :user_id, :title_image_url)
+    end
+
+    # Confirms a logged-in user.
+    def logged_in_user
+      unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to login_url
+      end
+    end
+
+    # Confirms the correct user.
+    def correct_user
+      @user = User.find(current_user.id)
+      redirect_to(root_url) unless @user == current_user || current_user.is_admin? 
     end
 end

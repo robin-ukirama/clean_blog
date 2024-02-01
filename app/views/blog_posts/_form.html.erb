@@ -25,9 +25,7 @@
   <div class="invalid-feedback" data-sb-feedback="content:required">Content is required.</div>
 </div>
 <div class="form-floating">
-  <%= form.collection_select :user_id, User.all, :id, :name, {}, { class: "form-control", id: "user_id", "data-sb-validations" => "required" } %>
-  <%= form.label :user_id, "User", class: "form-label", for: "user_id" %>
-  <div class="invalid-feedback" data-sb-feedback="user_id:required">User is required.</div>
+  <%= form.hidden_field :user_id, value: current_user.id %>
 </div>
 <div class="form-floating">
   <%= form.text_field :title_image_url, class: "form-control", id: "title_image_url", placeholder: "Enter title image URL...", "data-sb-validations" => "required" %>

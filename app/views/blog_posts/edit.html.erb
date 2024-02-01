@@ -1,7 +1,7 @@
 <% provide(:title, 'Edit Blog Post') %>
 <% provide(:heading, 'Edit Blog Post') %>
 <% provide(:sub_heading, 'You can edit blog post\'s information here') %>
-<% provide(:bg_image, 'blog-post-bg.png') %>
+<% provide(:bg_image, @blog_post.title_image_url) %>
 
 <main class="mb-4">
     <div class="container px-4 px-lg-5">
@@ -9,7 +9,7 @@
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <%= render 'form', blog_post: @blog_post %>
                 <%= link_to 'Show', @blog_post %> |
-                <%= link_to 'Back', blog_posts_path %>
+                <%= link_to 'Home', blog_posts_path %>
             </div>
         </div>
     </div>

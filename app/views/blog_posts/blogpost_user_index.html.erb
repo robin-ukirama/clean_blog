@@ -1,0 +1,36 @@
+<% provide(:title, 'Home') %>
+<% provide(:heading, 'My Blog') %>
+<% provide(:sub_heading, 'You can see all of your blog posts here') %>
+<% provide(:bg_image, 'home-bg.jpg') %>
+
+<!-- Main Content--> 
+<main class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <% if logged_in? %>
+                    <button class ="btn btn-light"><%= link_to 'New Blog Post', new_blog_post_path %></button>
+                <% end %>
+              <% @blog_posts.each do |blog_post| %>
+                <!-- Post preview-->
+                <div class="post-preview">
+                    <%= link_to blog_post do %>
+                        <h2 class="post-title"><%= blog_post.title %></h2>
+                        <h3 class="post-subtitle"><%= blog_post.summary %></h3>
+                        <% if logged_in? %>
+                            <%= link_to 'Edit', edit_blog_post_path(blog_post) %> 
+                            <%= link_to 'Delete', blog_post, method: :delete, data: { confirm: 'Are you sure?' }  %>
+                        <% end %>
+                    <% end %>
+                </div>
+                <!-- Divider-->
+                <hr class="my-4" />
+              <% end %>
+              <!-- Pager-->
+              <%# <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div> %>
+            </div>
+        </div>
+    </div>
+</main>
+
+

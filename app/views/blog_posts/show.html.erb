@@ -9,8 +9,10 @@
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
               <p><%= @blog_post.content %></p>
-              <%= link_to 'Edit', edit_blog_post_path(@blog_post) %> |
-              <%= link_to 'Back', blog_posts_path %>
+                <% if logged_in? && current_user.is_admin%>
+                    <%= link_to 'Edit', edit_blog_post_path(@blog_post) %> |
+                <% end %> 
+                <%= link_to 'Home', blog_posts_path %>
             </div>
         </div>
     </div>
