@@ -12,9 +12,7 @@ Rails.application.routes.draw do
   delete '/logout',  to: 'sessions#destroy'
   get   '/blog_posts/user/index', to: 'blog_posts#blogpost_user_index'
 
-  resources :blog_posts do
-    resources :comments
-  end
+  
   resources :tags
 
 

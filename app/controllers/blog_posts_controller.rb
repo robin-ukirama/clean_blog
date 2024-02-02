@@ -31,7 +31,7 @@ class BlogPostsController < ApplicationController
   def edit
     @user = User.find(current_user.id)
     @blogpost = BlogPost.find(params[:id])
-    if @user.id != @blogpost.user_id
+    if !@user.is_admin or @user.id != @blogpost.user_id
       redirect_to(root_url) 
     end
   end
