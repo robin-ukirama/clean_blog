@@ -29,6 +29,16 @@
     <%= form.label :password_confirmation, "Confirm Password", class: "form-label", for: "password_confirmation" %>
     <div class="invalid-feedback" data-sb-feedback="password_confirmation:required">Password confirmation is required.</div>
   </div>
+    <%if logged_in?%>
+      <% if @current_user.is_admin%>
+        <div class="form-check mt-3">
+          <%= form.label :is_admin, class: "form-check-label" do %>
+            <%= form.check_box :is_admin, class: "form-check-input", id: "is_admin" %>
+            Is Admin
+          <% end %>
+        </div>
+      <%end%>
+    <%end%>
   <br>
   <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Send</button>
 

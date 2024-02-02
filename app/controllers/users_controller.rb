@@ -17,6 +17,9 @@ class UsersController < ApplicationController
   # GET /users/new
   def new
     @user = User.new
+    if session[:user_id]
+      @current_user ||= User.find_by(id: session[:user_id])
+    end
   end
 
   # GET /users/1/edit
@@ -70,7 +73,7 @@ class UsersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def user_params
-      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+      params.require(:user).permit(:name, :email, :password, :password_confirmation, :is_admin)
     end
 
     # Confirms a logged-in user.
