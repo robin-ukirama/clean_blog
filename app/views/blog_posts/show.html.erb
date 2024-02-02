@@ -8,11 +8,17 @@
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
-              <p><%= @blog_post.content %></p>
+                <p style="text-align:justify"><%= @blog_post.content %></p>
+                <h6>
+                    Tags:
+                    <% @blog_post.tags.each do |tag| %>
+                        <%= link_to tag.name, tag_path(tag) %>
+                    <% end %>
+                </h6>
+
                 <% if logged_in? && current_user.is_admin%>
-                    <%= link_to 'Edit', edit_blog_post_path(@blog_post) %> |
+                    <%= link_to 'Want to edit your post? Click here', edit_blog_post_path(@blog_post) %>
                 <% end %> 
-                <%= link_to 'Home', blog_posts_path %>
             </div>
         </div>
     </div>

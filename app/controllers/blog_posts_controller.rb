@@ -66,6 +66,7 @@ class BlogPostsController < ApplicationController
 
   # DELETE /blog_posts/1 or /blog_posts/1.json
   def destroy
+    @blog_post.taggings.destroy_all
     @blog_post.destroy
 
     respond_to do |format|
@@ -82,7 +83,7 @@ class BlogPostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def blog_post_params
-      params.require(:blog_post).permit(:title, :summary, :content, :user_id, :title_image_url, :search)
+      params.require(:blog_post).permit(:title, :summary, :content, :user_id, :title_image_url, :search, :tag_list)
     end
 
     # Confirms a logged-in user.

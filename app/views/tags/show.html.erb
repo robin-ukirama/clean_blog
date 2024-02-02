@@ -1,0 +1,23 @@
+<!-- Post Content-->
+<article class="mb-4">
+    <div class="container px-4 px-lg-5">
+        <div class="row gx-4 gx-lg-5 justify-content-center">
+            <div class="col-md-10 col-lg-8 col-xl-7">
+                <h2>Blog posts that is tagged with <%= @tag.name %></h2>
+                  <br>
+
+                  <h6>
+                    <% @tag.blog_posts.each do |blog_post| %>
+                      <li><%= link_to blog_post.title, blog_post_path(blog_post) %></li>
+                    <% end %>
+                    <br>
+                  </h6>
+                    <%= link_to 'Home', blog_posts_path %>
+
+                  <% provide(:title, 'Blog Posts') %>
+                  <% provide(:heading, 'Taggings') %>
+                  <% provide(:sub_heading, 'You can see all of the posts that tagged with ' + @tag.name + ' tag') %>
+            </div>
+        </div>
+    </div>
+</article>

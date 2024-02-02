@@ -32,6 +32,12 @@
   <%= form.label :title_image_url, "Title Image URL", class: "form-label", for: "title_image_url" %>
   <div class="invalid-feedback" data-sb-feedback="title_image_url:required">Title Image URL is required.</div>
 </div>
+<div class="form-floating">
+  <%= form.text_field :tag_list, class: "form-control", id: "tag_list", placeholder: "Enter tags...", "data-sb-validations" => "required" %>
+  <%= form.label :tag_list, "Tag List", class: "form-label", for: "tag_list" %>
+  <div class="invalid-feedback" data-sb-feedback="tag_list:required">Tag List is required.</div>
+</div>
+
 <br>
 <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Send</button>
 <% end %>

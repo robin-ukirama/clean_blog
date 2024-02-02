@@ -1,16 +1,26 @@
-<% provide(:title, 'About Me') %>
-<% provide(:heading, 'About Me') %>
-<% provide(:sub_heading, 'This is what I do.') %>
+<% provide(:title, 'About') %>
+<% provide(:heading, 'About') %>
+<% provide(:sub_heading, 'What is this?') %>
 <% provide(:bg_image, 'about-bg.jpg') %>
 
 <!-- Main Content-->
 <main class="mb-4">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis sit soluta odio, adipisci quas excepturi maxime quae totam ducimus consectetur?</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eius praesentium recusandae illo eaque architecto error, repellendus iusto reprehenderit, doloribus, minus sunt. Numquam at quae voluptatum in officia voluptas voluptatibus, minus!</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut consequuntur magnam, excepturi aliquid ex itaque esse est vero natus quae optio aperiam soluta voluptatibus corporis atque iste neque sit tempora!</p>
+            <div class="col-md-10 col-lg-8 col-xl-7" style="text-align:justify">
+                <p>This is a Blog Post project created using Ruby on Rails</p> 
+                <p>
+                    The purpose of this project is to improve knowledge about Ruby on Rails and to implement the knowledge learned from Ruby on Rails Tutorial by Michael Hartl before.
+                    This project are completed through several steps, the first thing to do is to create static pages using html template and bootstrap also making extra needed pages.
+                    Postgresql database is also used in this project, with the purpose to store data using CRUD methods. 
+                </p>
+                <p> 
+                    Firstly we need to create the models required and running model validation and migration for the database.
+                    We then start developing the website using the models, controller, helpers, and migrations and converting the static pages in the beginning to be dynamic pages.
+                    The last parts are mostly the implementation and enhancing steps, doing implementation on user's account. Users can do sign up, login, and edits their profile.
+                    Users can upload their blogs also configure and delete their posts. To make the website more interesting, we added 2 features which is search blog and tag features.
+                    Users will be able to search for the uploaded blogs using the searchbox and can found other blogs based on the tags.
+                </p>
             </div>
         </div>
     </div>
