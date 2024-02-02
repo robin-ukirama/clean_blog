@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   get 'sessions/new'
   resources :blog_posts
   resources :users
+  resources :tags
   root 'blog_posts#index'
   get  '/index',    to: 'static_pages#index'
   get  '/post',    to: 'static_pages#post'
@@ -11,9 +12,5 @@ Rails.application.routes.draw do
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
   get   '/blog_posts/user/index', to: 'blog_posts#blogpost_user_index'
-
-  
-  resources :tags
-
 
 end

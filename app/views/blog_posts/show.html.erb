@@ -18,7 +18,7 @@
 
                 <% if logged_in? && current_user.is_admin%>
                     <%= link_to 'All Posts', blog_posts_path %> |
-                    <%= link_to 'Want to edit your post? Click here', edit_blog_post_path(@blog_post) %> 
+                    <%= link_to 'Want to edit the post? Click here', edit_blog_post_path(@blog_post) %> 
                 <% end %> 
             </div>
         </div>

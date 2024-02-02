@@ -24,9 +24,15 @@
   <%= form.label :content, "Content", class: "form-label", for: "content" %>
   <div class="invalid-feedback" data-sb-feedback="content:required">Content is required.</div>
 </div>
-<div class="form-floating">
-  <%= form.hidden_field :user_id, value: current_user.id %>
-</div>
+  <% if current_user.is_admin%>
+    <div class="form-floating">
+      <%= form.hidden_field :user_id, value: @blog_post.user_id %>
+    </div>
+  <% else %>
+    <div class="form-floating">
+      <%= form.hidden_field :user_id, value: current_user.id %>
+    </div>
+  <% end %>
 <div class="form-floating">
   <%= form.text_field :title_image_url, class: "form-control", id: "title_image_url", placeholder: "Enter title image URL...", "data-sb-validations" => "required" %>
   <%= form.label :title_image_url, "Title Image URL", class: "form-label", for: "title_image_url" %>
